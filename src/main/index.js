@@ -1,6 +1,7 @@
 import React from 'react';
 import './index.css'; // exprot 할것이 없을때는 from 을 뺀다.
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 function MainPage(){
         const [products, setProducts] = React.useState([]);
@@ -15,26 +16,27 @@ function MainPage(){
                 .catch(function(error) {
                     console.error('에러 발생 :', error);
                 });
-            },[])
+            },[]);
       
     
     return (
-    <div>
+        <div>
         <div id="header">
-            <div id="header-area">
-                <img src="images/icons/logo.png" />
-            </div>
+        <div id="header-area">
+            <img src="images/icons/logo.png" />
+        </div>
         </div>
         <div id="body">
-            <div id="banner">
-                <img src="images/banners/banner1.png" />
-            </div>
-            <h1>판매되는 상품들</h1>
-            <div id="product-list">
-                    {
-                        products.map(function(product, index){
-                            return (
-                            <div className="product-card">
+        <div id="banner">
+            <img src="images/banners/banner1.png" />
+        </div>
+        <h1>판매되는 상품들</h1>
+        <div id="product-list">
+                {
+                    products.map(function(product, index){
+                    return (
+                        <div className="product-card">
+                            <Link className="product-link" to={'/product/${index}'}>
                                 <div>
                                     <img className="product-img" 
                                     src={product.imageUrl}/>
@@ -51,15 +53,17 @@ function MainPage(){
                                         <span>{product.seller}</span>
                                     </div>
                                 </div>
-                            </div>  )
-                        })
-                    }
-                              
+                            </Link>
+                        </div>  
+                        );
+                    })}
+                            
+                </div>
             </div>
+            <div id="footer"></div>
         </div>
-    </div>
-       
-    )
-}
+
+        )
+        }
 
 export default MainPage;

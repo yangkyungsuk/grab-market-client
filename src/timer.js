@@ -14,7 +14,7 @@ function TimerComponent(){
             <h3>{time}초</h3>
             <button>1씩 올려주세요</button>
         </div>
-    );
+    ); 
 }
 
 export default TimerComponent;
